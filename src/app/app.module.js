@@ -1,4 +1,18 @@
 ;(function () {
   angular
-    .module('app', ['ui.bootstrap'])
+    .module('app', [
+      // angular
+      'ngCookies',
+      'ngRoute',
+
+      // vendor
+      'ui.bootstrap',
+
+      // layout
+      'app.layout',
+
+      // feature areas
+      'app.authentication',
+      'app.home'
+    ])
 })()

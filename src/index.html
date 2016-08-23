@@ -14,38 +14,34 @@
   </head>
   <body ng-app="app">
 
-	<div class="container">
-
-	<div class="page-header">
-	  <h1>Tasks manager</h1>
-	</div>
-
-	<div class="jumbotron" ng-controller="LoginController">
-		<h1>Move work forward</h1>
-		<p>Please login or <a>register</a> to continue</p>
-		<div class="row">
-			<div class="col-xs-12 col-sm-6 col-md-5 col-lg-4">
-				<form>
-				 	<div class="form-group">
-						<label for="email">Email address</label>
-						<input type="email" class="form-control" id="email" placeholder="Email">
-				  	</div>
-				  	<div class="form-group">
-						<label for="password">Password</label>
-						<input type="password" class="form-control" id="password" placeholder="Password">
-				  	</div>
-				</form>
-			</div>
-		</div>
-	</div>    
+	<ng-view></ng-view>
    
 
 	<!-- build:js js/app.min.js -->
+	<!-- angular -->
 	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+
+	<!-- vendor -->
 	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
+	<!-- bootstrap -->
 	<script src="app/app.module.js"></script>
 	<script src="app/app.config.js"></script>
+
+	<!-- layout -->
+	<script src="app/layout/layout.module.js"></script>
+	<script src="app/layout/navbar.controller.js"></script>
+
+	<!-- home -->
+	<script src="app/home/home.module.js"></script>
+	<script src="app/home/home.controller.js"></script>
+
+	<!-- authentication -->
+	<script src="app/authentication/authentication.module.js"></script>
+	<script src="app/authentication/authentication.factory.js"></script>
+	<script src="app/authentication/login.controller.js"></script>
 	<!-- endbuild -->
   </body>
 </html>
