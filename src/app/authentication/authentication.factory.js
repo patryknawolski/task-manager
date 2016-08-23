@@ -3,7 +3,7 @@ angular
   .factory('authenticationFactory', authenticationFactory)
 
 /* @ngInject */
-function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q) {
+function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q, base64Factory) {
   var service = {
     login: login,
     logout: logout,
@@ -36,8 +36,7 @@ function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q) {
 
     $timeout(function () {
       var response = {
-        success: true,
-        message: 'You\'ve been logged out successfully'
+        success: true
       }
 
       defered.resolve(response)
@@ -46,19 +45,24 @@ function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q) {
     return defered.promise
   }
 
-  function setCredentials (email) {
+  function setCredentials (email, password) {
+    var authdata = base64Factory.encode(email + ':' + password)
+
     $rootScope.globals = {
       currentUser: {
-        email: email
+        email: email,
+        authdata: authdata
       }
     }
 
+    $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata
     $cookieStore.put('globals', $rootScope.globals)
   }
 
   function clearCredentials () {
     $rootScope.globals = {}
 
+    $http.defaults.headers.common.Authorization = 'Basic '
     $cookieStore.remove('globals')
   }
 }
