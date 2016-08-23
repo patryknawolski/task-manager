@@ -14,8 +14,10 @@ function run ($cookieStore, $http, $location, $rootScope) {
   }
 
   $rootScope.$on('$locationChangeStart', function () {
+    var path = $location.path()
+
     // redirect to login page if not logged in
-    if ($location.path() !== '/login' && !$rootScope.globals.currentUser) {
+    if (path !== '/' && path !== '/login' && !$rootScope.globals.currentUser) {
       $location.path('/login')
     }
   })

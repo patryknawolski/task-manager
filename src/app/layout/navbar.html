@@ -18,7 +18,8 @@
 			</ul>
 
 			<ul class="nav navbar-nav navbar-right">
-				<li ng-click="vm.logout()"><a>Log out</a></li>
+				<li><a ng-href="/#/login" ng-hide="vm.currentUser">Log in</a></li>
+				<li><a ng-click="vm.logout()" ng-show="vm.currentUser">Log out</a></li>
 			</ul>
 	    </div>
 	</div>
