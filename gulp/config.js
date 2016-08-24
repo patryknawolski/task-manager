@@ -2,6 +2,8 @@ module.exports = {
 	sourceDir: './src/',
 	buildDir: './build/',
 
+	database: 'db.json',
+
 	styles: {
 		src: 'src/scss/**/*.scss',
 		tmp: 'src/css',

@@ -20,7 +20,7 @@ function NavbarController ($location, $rootScope, authenticationFactory) {
       if (response.success) {
         authenticationFactory.clearCredentials()
 
-        $location.path('/login')
+        $location.path('/')
       }
     }
   }

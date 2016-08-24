@@ -3,5 +3,5 @@ angular
   .controller('DashboardController', DashboardController)
 
 function DashboardController () {
-  
+
 }

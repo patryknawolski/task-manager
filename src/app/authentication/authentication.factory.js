@@ -3,7 +3,7 @@ angular
   .factory('authenticationFactory', authenticationFactory)
 
 /* @ngInject */
-function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q, base64Factory) {
+function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q, base64Factory, usersFactory) {
   var service = {
     login: login,
     logout: logout,
@@ -14,21 +14,19 @@ function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q, b
   return service
 
   function login (email, password) {
-    var defered = $q.defer()
+    return usersFactory.getByEmail(email)
+      .then(function (user) {
+        var response = {}
 
-    $timeout(function () {
-      var response = {
-        success: email === 'patryknawolski@gmail.com' && password === 'password'
-      }
+        if (user.password === password) {
+          response.success = true
+        } else {
+          response.success = false
+          response.message = 'Password for this account is incorrect.'
+        }
 
-      if (!response.success) {
-        response.message = 'Username or password is incorrect.'
-      }
-
-      defered.resolve(response)
-    }, 1000)
-
-    return defered.promise
+        return response
+      })
   }
 
   function logout () {
