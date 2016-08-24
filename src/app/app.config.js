@@ -20,5 +20,10 @@ function config ($routeProvider) {
       controllerAs: 'vm',
       templateUrl: 'app/authentication/login.html'
     })
+    .when('/register', {
+      controller: 'RegisterController',
+      controllerAs: 'vm',
+      templateUrl: 'app/authentication/register.html'
+    })
     .otherwise({ redirectTo: '/' })
 }

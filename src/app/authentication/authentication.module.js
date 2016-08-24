@@ -18,12 +18,12 @@ function run ($cookieStore, $http, $location, $rootScope) {
 
     if (!$rootScope.globals.currentUser) {
       // redirect to login page if not logged in
-      if (path !== '/' && path !== '/login') {
+      if (path !== '/' && path !== '/login' && path !== '/register') {
         $location.path('/login')
       }
     } else {
       // redirect to dashboard if logged and goes to home/login
-      if (path === '/' || path === '/login') {
+      if (path === '/' || path === '/login' || path === '/register') {
         $location.path('/dashboard')
       }
     }
