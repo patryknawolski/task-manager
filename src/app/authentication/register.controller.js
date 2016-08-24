@@ -9,8 +9,7 @@ function RegisterController ($location, authenticationFactory) {
     firstName: '',
     lastName: '',
     email: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
   }
 
   function register () {
