@@ -15,5 +15,5 @@ function config ($routeProvider) {
       controllerAs: 'vm',
       templateUrl: 'app/home/home.html'
     })
-    .otherwise({ redirectTo: '/login' })
+    .otherwise({ redirectTo: '/' })
 }
