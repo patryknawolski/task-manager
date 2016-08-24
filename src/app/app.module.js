@@ -13,6 +13,7 @@
 
       // feature areas
       'app.authentication',
+      'app.dashboard',
       'app.home'
     ])
 })()
