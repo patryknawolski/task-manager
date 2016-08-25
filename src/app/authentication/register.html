@@ -11,7 +11,7 @@
 				{{ vm.error }}
 			</div>
 
-			<form name="registerForm" ng-submit="registerForm.$valid && vm.register(vm.user)" novalidate>
+			<form name="registerForm" ng-submit="vm.register(vm.user)" novalidate>
 			  	<div class="form-group">
 					<label for="first-name">First name</label>
 					<input type="first-name" class="form-control" id="first-name" name="firstName" placeholder="First name" ng-model="vm.user.firstName" required>
