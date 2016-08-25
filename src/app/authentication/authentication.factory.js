@@ -7,7 +7,6 @@ function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q, b
   var service = {
     clearCredentials: clearCredentials,
     login: login,
-    logout: logout,
     setCredentials: setCredentials
   }
 
@@ -34,20 +33,6 @@ function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q, b
 
         return response
       })
-  }
-
-  function logout () {
-    var defered = $q.defer()
-
-    $timeout(function () {
-      var response = {
-        success: true
-      }
-
-      defered.resolve(response)
-    }, 1000)
-
-    return defered.promise
   }
 
   function setCredentials (email, password) {

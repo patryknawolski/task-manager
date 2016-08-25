@@ -13,15 +13,8 @@ function NavbarController ($location, $rootScope, authenticationFactory) {
   })
 
   function logout () {
-    authenticationFactory.logout()
-      .then(logoutCallback)
+    authenticationFactory.clearCredentials()
 
-    function logoutCallback (response) {
-      if (response.success) {
-        authenticationFactory.clearCredentials()
-
-        $location.path('/')
-      }
-    }
+    $location.path('/')
   }
 }
