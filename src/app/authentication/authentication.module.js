@@ -14,16 +14,21 @@ function run ($cookieStore, $http, $location, $rootScope) {
   }
 
   $rootScope.$on('$locationChangeStart', function () {
+    var isPageRestricted
+    var loggedIn = $rootScope.globals.currentUser
+
     var path = $location.path()
 
-    if (!$rootScope.globals.currentUser) {
-      // redirect to login page if not logged in
-      if (path !== '/' && path !== '/login' && path !== '/register') {
+    if (!loggedIn) {
+      isPageRestricted = ['/', '/login', '/register'].indexOf(path) === -1
+
+      if (isPageRestricted) {
         $location.path('/login')
       }
     } else {
-      // redirect to dashboard if logged and goes to home/login
-      if (path === '/' || path === '/login' || path === '/register') {
+      isPageRestricted = ['/', '/login', '/register'].indexOf(path) !== -1
+
+      if (isPageRestricted) {
         $location.path('/dashboard')
       }
     }
