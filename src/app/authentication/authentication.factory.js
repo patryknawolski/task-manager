@@ -5,13 +5,20 @@ angular
 /* @ngInject */
 function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q, base64Factory, usersFactory) {
   var service = {
+    clearCredentials: clearCredentials,
     login: login,
     logout: logout,
-    setCredentials: setCredentials,
-    clearCredentials: clearCredentials
+    setCredentials: setCredentials
   }
 
   return service
+
+  function clearCredentials () {
+    $rootScope.globals = {}
+
+    $http.defaults.headers.common.Authorization = 'Basic '
+    $cookieStore.remove('globals')
+  }
 
   function login (email, password) {
     return usersFactory.getByEmail(email)
@@ -55,12 +62,5 @@ function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q, b
 
     $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata
     $cookieStore.put('globals', $rootScope.globals)
-  }
-
-  function clearCredentials () {
-    $rootScope.globals = {}
-
-    $http.defaults.headers.common.Authorization = 'Basic '
-    $cookieStore.remove('globals')
   }
 }

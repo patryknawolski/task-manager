@@ -2,7 +2,7 @@ angular
   .module('app.authentication')
   .controller('RegisterController', RegisterController)
 
-function RegisterController ($location, authenticationFactory) {
+function RegisterController ($location, authenticationFactory, usersFactory) {
   var vm = this
   vm.register = register
   vm.user = {
@@ -12,7 +12,18 @@ function RegisterController ($location, authenticationFactory) {
     password: ''
   }
 
-  function register () {
-    alert('registered')
+  function register (user) {
+    usersFactory.create(user)
+      .then(createCallback)
+
+    function createCallback (response) {
+      if (response.success) {
+        authenticationFactory.setCredentials(vm.user.email, vm.user.password)
+
+        $location.path('/dashboard')
+      } else if (response.message) {
+        vm.error = response.message
+      }
+    }
   }
 }

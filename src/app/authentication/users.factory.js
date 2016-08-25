@@ -3,12 +3,22 @@ angular
   .factory('usersFactory', usersFactory)
 
 /* @ngInject */
-function usersFactory ($http) {
+function usersFactory ($http, $q) {
   var service = {
-    getByEmail: getByEmail
+    getAll: getAll,
+    getByEmail: getByEmail,
+    getNewId: getNewId,
+    create: create
   }
 
   return service
+
+  function getAll () {
+    return $http.get('http://localhost:3004/users')
+      .then(function (response) {
+        return response.data
+      })
+  }
 
   function getByEmail (email) {
     return $http.get('http://localhost:3004/users?email=' + email)
@@ -18,5 +28,46 @@ function usersFactory ($http) {
 
         return user
       })
+  }
+
+  function getNewId () {
+    return service.getAll()
+      .then(function (users) {
+        var lastId = users[users.length - 1].id
+
+        return lastId + 1
+      })
+  }
+
+  function create (newUser) {
+    var deferred = $q.defer()
+
+    service.getByEmail(newUser.email)
+      .then(function (user) {
+        var response = {}
+
+        if (!user) {
+          service.getNewId()
+            .then(function (id) {
+              newUser.id = id
+
+              $http.post('http://localhost:3004/users', newUser, {
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              })
+                .then(function () {
+                  response.success = true
+                  deferred.resolve(response)
+                })
+            })
+        } else {
+          response.success = false
+          response.message = 'This email has been already registered.'
+          deferred.resolve(response)
+        }
+      })
+
+    return deferred.promise
   }
 }
