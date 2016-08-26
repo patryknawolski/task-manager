@@ -24,7 +24,7 @@ function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q, b
       .then(function (user) {
         var response = {}
 
-        if (user.password === password && user.password !== undefined) {
+        if (user !== null && user.password === password) {
           response.success = true
         } else {
           response.success = false
