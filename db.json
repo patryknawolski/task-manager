@@ -5,7 +5,7 @@
 			"email": "test@test.com",
 			"password": "password",
 			"firstName": "John",
-			"lastName": "Doe",
+			"lastName": "Doe"
 		}
 	]
 }
