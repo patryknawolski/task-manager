@@ -26,5 +26,8 @@
     "gulp-useref": "^3.1.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.2.2"
+  },
+  "dependencies": {
+    "json-server": "^0.8.18"
   }
 }
