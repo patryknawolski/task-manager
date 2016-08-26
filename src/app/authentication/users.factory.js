@@ -3,7 +3,7 @@ angular
   .factory('usersFactory', usersFactory)
 
 /* @ngInject */
-function usersFactory ($http, $q) {
+function usersFactory ($http, $timeout, $q) {
   var service = {
     getAll: getAll,
     getByEmail: getByEmail,
@@ -14,20 +14,34 @@ function usersFactory ($http, $q) {
   return service
 
   function getAll () {
-    return $http.get('http://localhost:3004/users')
-      .then(function (response) {
-        return response.data
-      })
+    var deferred = $q.defer()
+
+    // fake delay
+    $timeout(function () {
+      return $http.get('http://localhost:3004/users')
+        .then(function (response) {
+          deferred.resolve(response.data)
+        })
+    }, 500)
+
+    return deferred.promise
   }
 
   function getByEmail (email) {
-    return $http.get('http://localhost:3004/users?email=' + email)
-      .then(function (response) {
-        var user = response.data[0]
-        user = user !== undefined ? user : false
+    var deferred = $q.defer()
 
-        return user
-      })
+    // fake delay
+    $timeout(function () {
+      $http.get('http://localhost:3004/users?email=' + email)
+        .then(function (response) {
+          var user = response.data[0]
+          user = user !== undefined ? user : false
+
+          deferred.resolve(user)
+        })
+    }, 500)
+
+    return deferred.promise
   }
 
   function getNewId () {
@@ -51,15 +65,18 @@ function usersFactory ($http, $q) {
             .then(function (id) {
               newUser.id = id
 
-              $http.post('http://localhost:3004/users', newUser, {
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-              })
-                .then(function () {
-                  response.success = true
-                  deferred.resolve(response)
+              // fake delay
+              $timeout(function () {
+                $http.post('http://localhost:3004/users', newUser, {
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
                 })
+                  .then(function () {
+                    response.success = true
+                    deferred.resolve(response)
+                  })
+              }, 500)
             })
         } else {
           response.success = false
