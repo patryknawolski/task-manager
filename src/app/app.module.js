@@ -8,6 +8,9 @@
       // vendor
       'ui.bootstrap',
 
+      // shared
+      'app.services',
+
       // layout
       'app.layout',
 

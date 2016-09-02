@@ -17,8 +17,9 @@ function LoginController ($location, authenticationFactory) {
     function loginCallback (response) {
       if (response.success) {
         authenticationFactory.setCredentials(vm.user.email, vm.user.password)
-
-        $location.path('/dashboard')
+          .then(function () {
+            $location.path('/dashboard')
+          })
       } else if (response.message) {
         vm.error = response.message
       }

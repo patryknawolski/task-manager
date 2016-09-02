@@ -1,11 +1,72 @@
 {
 	"users": [
 		{
-			"id": 1,
+			"id": 0,
 			"email": "test@test.com",
 			"password": "password",
 			"firstName": "John",
 			"lastName": "Doe"
+		}
+	],
+	"tasks": [
+		{
+			"id": 0,
+			"userId": 0,
+			"name": "Create Themes to show the feeds"
+		},
+		{
+			"id": 1,
+			"userId": 0,
+			"name": "Create the logic to embed the source into your site",
+			"starred": true
+		},
+		{
+			"id": 2,
+			"userId": 0,
+			"name": "Create moderation logic"
+		},
+		{
+			"id": 3,
+			"userId": 0,
+			"name": "Create filter to show only posts with Images",
+			"starred": true
+		},
+		{
+			"id": 4,
+			"userId": 0,
+			"name": "Create the Oath integration to Instagram"
+		},
+		{
+			"id": 5,
+			"userId": 0,
+			"name": "Search library to use for Instagram integration"
+		},
+		{
+			"id": 6,
+			"userId": 0,
+			"name": "Create Tables to store Instagram information",
+			"starred": true
+		},
+		{
+			"id": 7,
+			"userId": 0,
+			"name": "Logic to have different queues for each of the logged users"
+		},
+		{
+			"id": 8,
+			"userId": 0,
+			"name": "Setup Bamboo"
+		},
+		{
+			"id": 9,
+			"userId": 0,
+			"name": "Generate the json output to be consumed by the tuBrand project",
+			"starred": true
+		},
+		{
+			"id": 10,
+			"userId": 0,
+			"name": "Create the Oath integration to FB"
 		}
 	]
 }

@@ -3,5 +3,19 @@
 	  <h1>Dashboard</h1>
 	</div>
 	
-	<h2>Hello {{ $root.globals.currentUser.email }}</h2>
+	<h3>Hello {{ $root.globals.currentUser.email }}</h3>
+
+	<h2>Your recent starred tasks:</h2>
+	<ul class="list-group">
+		<li ng-repeat="task in vm.recentTasks" class="list-group-item list-group-item-warning">
+			<i class="fa fa-star"></i> {{ task.name }}
+		</li>
+	</ul>
+
+	<h2>Your recent tasks:</h2>
+	<ul class="list-group">
+		<li ng-repeat="task in vm.recentTasks" class="list-group-item" ng-class="{ 'list-group-item-warning': task.starred }">
+			<i class="fa fa-star" ng-if="task.starred"></i> {{ task.name }}
+		</li>
+	</ul>
 </div>

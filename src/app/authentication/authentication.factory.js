@@ -45,7 +45,12 @@ function authenticationFactory ($cookieStore, $http, $rootScope, $timeout, $q, b
       }
     }
 
-    $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata
-    $cookieStore.put('globals', $rootScope.globals)
+    return usersFactory.getByEmail(email)
+      .then(function (user) {
+        $rootScope.globals.currentUser.id = user.id
+
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata
+        $cookieStore.put('globals', $rootScope.globals)
+      })
   }
 }
