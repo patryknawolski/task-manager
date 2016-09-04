@@ -17,6 +17,7 @@
       // feature areas
       'app.authentication',
       'app.dashboard',
-      'app.home'
+      'app.home',
+      'app.tasks'
     ])
 })()

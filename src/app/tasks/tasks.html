@@ -1,0 +1,11 @@
+<div class="container">
+	<div class="page-header">
+	  <h1>Your tasks</h1>
+	</div>
+
+	<ul class="list-group">
+		<li ng-repeat="task in vm.tasks" class="list-group-item" ng-class="{ 'list-group-item-warning': task.starred }">
+			<i class="fa fa-star" ng-if="task.starred"></i> {{ task.name }}
+		</li>
+	</ul>
+</div>

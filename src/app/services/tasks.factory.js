@@ -3,7 +3,7 @@ angular
   .factory('tasksFactory', tasksFactory)
 
 /* @ngInject */
-function tasksFactory ($http) {
+function tasksFactory ($http, $timeout, $q) {
   var service = {
     getByUserId: getByUserId,
     getStarredByUserId: getStarredByUserId

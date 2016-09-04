@@ -17,6 +17,7 @@
 				<li><a ng-href="/#/register" ng-hide="vm.currentUser">Register</a></li>
 				<li><a ng-href="/#/login" ng-hide="vm.currentUser">Log in</a></li>
 
+				<li><a ng-href="/#/tasks" ng-show="vm.currentUser">Tasks</a></li>
 				<li><a ng-href="/#/dashboard" ng-show="vm.currentUser">Dashboard</a></li>
 				<li><a ng-click="vm.logout()" ng-show="vm.currentUser">Log out</a></li>
 			</ul>

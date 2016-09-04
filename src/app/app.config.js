@@ -15,6 +15,11 @@ function config ($routeProvider) {
       controllerAs: 'vm',
       templateUrl: 'app/dashboard/dashboard.html'
     })
+    .when('/tasks', {
+      controller: 'TasksController',
+      controllerAs: 'vm',
+      templateUrl: 'app/tasks/tasks.html'
+    })
     .when('/login', {
       controller: 'LoginController',
       controllerAs: 'vm',
