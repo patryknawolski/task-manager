@@ -2,6 +2,7 @@ angular
   .module('app.tasks')
   .controller('TasksController', TasksController)
 
+/* @ngInject */
 function TasksController ($rootScope, tasksFactory) {
   var vm = this
   vm.tasks
