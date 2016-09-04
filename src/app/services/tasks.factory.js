@@ -12,28 +12,40 @@ function tasksFactory ($http, $timeout, $q) {
   return service
 
   function getByUserId (id, limitTo) {
-    var url = 'http://localhost:3004/users/' + id + '/tasks'
+    var deferred = $q.defer()
 
-    if (typeof limitTo !== 'undefined') {
-      url += '?_limit=' + limitTo
-    }
+    $timeout(function () {
+      var url = 'http://localhost:3004/users/' + id + '/tasks'
 
-    return $http.get(url)
-      .then(function (response) {
-        return response.data
-      })
+      if (typeof limitTo !== 'undefined') {
+        url += '?_limit=' + limitTo
+      }
+
+      return $http.get(url)
+        .then(function (response) {
+          deferred.resolve(response.data)
+        })
+    }, 500)
+
+    return deferred.promise
   }
 
   function getStarredByUserId (id, limitTo) {
-    var url = 'http://localhost:3004/users/' + id + '/tasks?starred=true'
+    var deferred = $q.defer()
 
-    if (typeof limitTo !== 'undefined') {
-      url += '?_limit=' + limitTo
-    }
+    $timeout(function () {
+      var url = 'http://localhost:3004/users/' + id + '/tasks?starred=true'
 
-    return $http.get(url)
-      .then(function (response) {
-        return response.data
-      })
+      if (typeof limitTo !== 'undefined') {
+        url += '?_limit=' + limitTo
+      }
+
+      return $http.get(url)
+        .then(function (response) {
+          deferred.resolve(response.data)
+        })
+    }, 500)
+
+    return deferred.promise
   }
 }
