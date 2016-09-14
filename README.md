@@ -18,6 +18,10 @@ After cloning the repository, the following commands install the Javascript depe
     
 ## Starting the server
 
+Run the following command to generate and run database server:
+
+    npm run database
+
 Run the following command to build:
 
     gulp
